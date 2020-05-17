@@ -47,6 +47,4 @@
         printf("\n\n\n---------------------------------------\n");
         scanf("%d", &location_command);
         location_command == 1 ? help_the_user() : get_word_and_generates_passwords(); 
-        //if(location_command == 1) user_help();
-        //else get_word_and_generates_passwords();
     }
