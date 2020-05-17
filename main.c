@@ -2,78 +2,51 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
-    void gerar_senhas(){
+
+// *****************
+    int location_command;
+    // Universal variable to call functions.
+// *****************
+    void get_word_and_generates_passwords(){
         system("clear");
-        printf("\n\n\n-----------Bem vindo ao seu gerador de senhas---------------------\n\n");
-        printf("------------------------------------------------------------------\n");
-        printf("\n     Agora você só precisa digitar um número de palavras/números, separadas ou não por espaço\n\n");
-        printf("       Depois de digitar, pressione a tecla `ENTER`\n\n");
-        printf("------------------------------------------------------------------\n");
-        getchar();
-        char str[999], senha_atual[8];
-        fgets(str, 999, stdin);
-        int x = strlen(str);
-        // char BaseS[x];
-        // for(int i = 0; i <= x; i++){
-        //     if(str[i] != ' '){
-        //         BaseS[i] = str
-        //     }
-        // }
-        int senhas = 0;
-
-        while(senhas < 10){
-            int tamanho_senha = 0;
-           while(tamanho_senha < 8){
-               int i = (rand() % x);
-               if(str[i] != ' '){
-                   i += 1;
-               }
-               if(str[i] != '\n'){
-                    senha_atual[tamanho_senha] = str[i];
-                    ++tamanho_senha;
-
-               }
-            //    else senha_atual[tamanho_senha] = '}';
-           }    
-            printf("Senha %d: %s\n", senhas + 1, senha_atual);
-            ++senhas;
+        printf("\n\n\n-----------WELCOME---------------------\n");
+        printf("TYPE 2 WORDS: ");
+        char word1[500], word2[500];
+        scanf("%s %s", word1, word2);
+        printf("\n---------------------------------------\n");
+        printf("%s %s\n", word1, word2);
+        int passwords = 0, r;
+        char password[8];
+        while(passwords < 10){
+            r = 500 + (rand() % 600);
+            printf("random: %d\n", r);
+            ++passwords;
         }
+
     }
 
-    void manual(){
-        system("clear");
-        printf("\n\n\n-----------Bem vindo ao seu gerador de senhas---------------------\n\n");
-        printf("------------------------------------------------------------------\n");
-        printf("\n      Este programa pretende gerar 10 senhas diferentes, mas como essas senhas serão geradas?\n");
-        printf("\n      VOCÊ SÓ PRECISA INFORMAR, NO MÍNIMO, UMA PALAVRA E/OU UMA SÉRIE DE NÚMEROS (SEPARADOS OU NÃO POR ESPAÇO).\n\n\n");
-        printf("------------------------------------------------------------------\n\n");
-
-        printf("\n      Entendeu??\n\n\n");
-        int s_ou_n;
-        printf("            Sim? Digite 1\n");
-        printf("            Não? Digite 2\n");
-        scanf("%d", &s_ou_n);
-        if(s_ou_n == 1) gerar_senhas();
-        else{
-            system("clear");
-            printf("------------------------------------------------------------------\n");
-            printf("\n  Sério???\n\n Mas enfim, você gostaria de olhar o tutorial novamente?\n");
-            printf("\n      1. Tutorial.\n");
-            printf("\n      2. Gerar as senhas.\n");
-            printf("\n------------------------------------------------------------------\n");
-            scanf("%d", &s_ou_n);
-            if(s_ou_n == 1) manual();
-            else gerar_senhas();
-        }
+    void get_out(){
+        return;
     }
-    
+
+    void help_the_user(){
+        system("clear");
+        printf("\n\n\n-----------WELCOME---------------------\n");
+        printf("\n  TO OBTAIN PASSWORDS YOU WILL ONLY NEED TO ENTER 2 WORDS.\n\n");   
+        printf("        [1] Ok, I UNDERSTAND AND I WANT TO PROCEED.\n");
+        printf("\n        [2] EXIT.\n");
+        printf("\n---------------------------------------\n");
+        scanf("%d", &location_command);
+        location_command == 1 ? get_word_and_generates_passwords() : get_out(); 
+    }
+
     int main(){
         system("clear");
-        printf("\n\n\n-----------Bem vindo ao seu gerador de senhas---------------------\n");
-        printf("\nDigite 1 ou 2 para os seguintes comandos:\n    1. Como funciona?\n    2. Gerar senhas.\n\n\n");
-        int comando_inicial;
-        scanf("%d", &comando_inicial);
-        if(comando_inicial == 1) manual();
-        else gerar_senhas();
-        // system("clear");
+        printf("\n\n\n-----------WELCOME---------------------\n");
+        printf("\n\n\n  TYPE 1 OR 2 TO PROCEED.\n    1. HELP.\n    2. GET PASSWORDS.\n");
+        printf("\n\n\n---------------------------------------\n");
+        scanf("%d", &location_command);
+        location_command == 1 ? help_the_user() : get_word_and_generates_passwords(); 
+        //if(location_command == 1) user_help();
+        //else get_word_and_generates_passwords();
     }
