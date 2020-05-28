@@ -1,57 +1,94 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
-#include <ctype.h>
-
-// *****************
-    int location_command;
-    // Universal variable to call functions.
-// *****************
-    void get_word_and_generates_passwords(){
+    char senha[10] = "**********";
+    int i = 0;
+    const char letra_min[] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j',
+     'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's',
+      't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
+    
+    const char letra_max[] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J',
+                            'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S',
+                            'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '0', '1',
+                             '2', '3', '4', '5', '6', '7', '8', '9'};
+    
+    const char number[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
+    
+    void generator(int n, int min, int max, int q){
         system("clear");
-        printf("\n\n\n-----------WELCOME---------------------\n\n");
-        int passwords = 0, r = 0;
-        int password[8];
-        scanf("%d", &location_command);
-        while(passwords < location_command){
-            for(int i = 0; i < 8; i++){
-                r = 48 + rand() % 10;
-                password[i] = r;
+        if(i < q){
+            printf("senha %d: ", i + 1);
+            if(n == 1 && min == 0 && max == 0){
+                while(senha[0] == '*' || senha[1] == '*' || senha[2] == '*' || senha[3] == '*' || senha[4] == '*' || senha[5] == '*' || senha[6] == '*' || senha[7] == '*' || senha[8] == '*' || senha[9] == '*'){
+                    senha[rand() % 10] = number[rand() % 10];        
+                }
+                printf("%s\n", senha);
             }
-            printf("Password %d: ", passwords + 1);
-            for(int i = 0; i < 8; i++){
-                printf("%c", password[i]);
+            else if(n == 0 && min == 1 && max == 0){
+                while(senha[0] == '*' || senha[1] == '*' || senha[2] == '*' || senha[3] == '*' || senha[4] == '*' || senha[5] == '*' || senha[6] == '*' || senha[7] == '*' || senha[8] == '*' || senha[9] == '*'){
+                    senha[rand() % 10] = letra_min[rand() % 26];        
+                }
+                printf("%s\n", senha);
             }
-            printf("\n");
-            ++passwords;
+            else if(n == 0 && min == 0 && max == 1){
+                while(senha[0] == '*' || senha[1] == '*' || senha[2] == '*' || senha[3] == '*' || senha[4] == '*' || senha[5] == '*' || senha[6] == '*' || senha[7] == '*' || senha[8] == '*' || senha[9] == '*'){
+                    senha[rand() % 10] = letra_max[rand() % 26];        
+                }
+                printf("%s\n", senha);
+            }
+            else if(n == 0 && min == 1 && max == 1){
+                while(senha[0] == '*' || senha[1] == '*' || senha[2] == '*' || senha[3] == '*' || senha[4] == '*' || senha[5] == '*' || senha[6] == '*' || senha[7] == '*' || senha[8] == '*' || senha[9] == '*'){
+                    senha[rand() % 10] = letra_max[rand() % 26];
+                    senha[rand() % 10] = letra_min[rand() % 26];        
+                }
+                printf("%s\n", senha);
+            }
+            else if(n == 1 && min == 0 && max == 1){
+                while(senha[0] == '*' || senha[1] == '*' || senha[2] == '*' || senha[3] == '*' || senha[4] == '*' || senha[5] == '*' || senha[6] == '*' || senha[7] == '*' || senha[8] == '*' || senha[9] == '*'){
+                    senha[rand() % 10] = letra_max[rand() % 26];
+                    senha[rand() % 10] = number[rand() % 10];        
+                }
+                printf("%s\n", senha);
+            }
+            else if(n == 1 && min == 1 && max == 0){
+                while(senha[0] == '*' || senha[1] == '*' || senha[2] == '*' || senha[3] == '*' || senha[4] == '*' || senha[5] == '*' || senha[6] == '*' || senha[7] == '*' || senha[8] == '*' || senha[9] == '*'){
+                    senha[rand() % 10] = letra_max[rand() % 26];
+                    senha[rand() % 10] = number[rand() % 10];        
+                }
+                printf("%s\n", senha);
+            }
+            else if(n == 1 && min == 1 && max == 1){
+                while(senha[0] == '*' || senha[1] == '*' || senha[2] == '*' || senha[3] == '*' || senha[4] == '*' || senha[5] == '*' || senha[6] == '*' || senha[7] == '*' || senha[8] == '*' || senha[9] == '*'){
+                    senha[rand() % 10] = letra_max[rand() % 26];
+                    senha[rand() % 10] = number[rand() % 10];   
+                    senha[rand() % 10] = letra_min[rand() % 26];     
+                }
+                printf("%s\n", senha);
+            }
+            ++i;
+            if(n != 1 && n != 0 || min != 1 && min != 0 && max != 1 && max != 0){
+                system("clear");
+                printf("\n\n\n-----------NÚMERO INCORRETO---------------------\n\n\n");
+                return;
+            }
+            for(int j = 0; j < 10; j++){
+                senha[j] = '*';
+            }
+            generator(n, min, max, q);
         }
-        printf("\n---------------------------------------\n\n");
-    }
-
-    void get_out(){
-        return;
-    }
-
-    void help_the_user(){
-        system("clear");
-        printf("\n\n\n-----------WELCOME---------------------\n");
-        printf("\n  TO OBTAIN PASSWORDS YOU WILL ONLY NEED TO ENTER AS MANY PASSWORDS AS YOU WANT.\n\n");   
-        printf("        [1] Ok, I UNDERSTAND AND I WANT TO PROCEED.\n");
-        printf("\n        [2] EXIT.\n");
-        printf("\n---------------------------------------\n");
-        scanf("%d", &location_command);
-
-        location_command == 1 ? get_word_and_generates_passwords() : get_out(); 
     }
 
     int main(){
-
+        int n, min, max, q;
         system("clear");
-        printf("\n\n\n-----------WELCOME---------------------\n");
-        printf("\n\n\n  TYPE 1 OR 2 TO PROCEED.\n    1. HELP.\n    2. GET PASSWORDS.\n");
-        printf("\n\n\n---------------------------------------\n");
-        scanf("%d", &location_command);
-
-        location_command == 1 ? help_the_user() : get_word_and_generates_passwords(); 
-
+        printf("\n\n\n-----------WELCOME---------------------\n\n");
+        printf("-----------QUANTAS SENHAS VOCÊ DESEJA?---------------------\n");
+        scanf("%d", &q);
+        printf("\n\n-----------DIGITE (1) PARA SIM OU (0) PARA NÃO\n---------------------\n");
+        printf("1. Senhas com números? \n       1 -> SIM\n       0 -> NÃO\n");
+        scanf("%d", &n);
+        printf("2. Senhas com letras maiúsculas? \n       1 -> SIM\n       0 -> NÃO\n");
+        scanf("%d", &max);
+        printf("2. Senhas com letras minúsculas? \n       1 -> SIM\n       0 -> NÃO\n");
+        scanf("%d", &min);
+        generator(n, min, max, q);
     }
