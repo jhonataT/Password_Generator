@@ -14,7 +14,6 @@
     const char number[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
     
     void generator(int n, int min, int max, int q){
-        system("clear");
         if(i < q){
             printf("senha %d: ", i + 1);
             if(n == 1 && min == 0 && max == 0){
@@ -83,12 +82,16 @@
         printf("\n\n\n-----------WELCOME---------------------\n\n");
         printf("-----------QUANTAS SENHAS VOCÊ DESEJA?---------------------\n");
         scanf("%d", &q);
+        system("clear");
         printf("\n\n-----------DIGITE (1) PARA SIM OU (0) PARA NÃO\n---------------------\n");
         printf("1. Senhas com números? \n       1 -> SIM\n       0 -> NÃO\n");
         scanf("%d", &n);
+        system("clear");
         printf("2. Senhas com letras maiúsculas? \n       1 -> SIM\n       0 -> NÃO\n");
         scanf("%d", &max);
+        system("clear");
         printf("2. Senhas com letras minúsculas? \n       1 -> SIM\n       0 -> NÃO\n");
         scanf("%d", &min);
+        system("clear");
         generator(n, min, max, q);
     }
